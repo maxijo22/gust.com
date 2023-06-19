@@ -1,0 +1,26 @@
+{
+  "name": "max/myframework",
+  "type": "n",
+  "require-dev": {
+    "symfony/var-dumper": "^6.2" 
+
+  },
+  "autoload": {
+    "psr-4": {
+      "Myframework\\": "core/",
+      "App\\": "src/"
+    }
+  },
+  "license": "mit",
+  "authors": [
+    {
+      "name": "maxwell"
+    }
+  ],
+  "require": {
+    "psr/container": "^2.0",
+    "php-di/php-di": "^7.0",
+    "firebase/php-jwt": "^6.5",
+    "vlucas/phpdotenv": "^5.5"
+  }
+}
