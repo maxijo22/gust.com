@@ -4,7 +4,7 @@ header('Access-Control-Allow-Origin:http://localhost:5173');
 header('Access-Control-Allow-Credentials:true');
 use Myframework\Http\Token;
 use Myframework\Http\App;
-use Myframework\Http\Request;
+// use Myframework\Http\Request;
 
 
 define('BASE_PATH', dirname(__DIR__));
