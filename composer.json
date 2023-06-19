@@ -1,5 +1,5 @@
 {
-  "name": "gust/myframework",
+  "name": "thundergustmax/myframework",
   "type": "n",
   "require-dev": {
     "symfony/var-dumper": "^6.2" 
