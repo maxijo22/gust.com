@@ -43,14 +43,32 @@ class RouteBuilder
         return $this;
     }
 
+    private function validateUrl($url)
+    {
+        if ($url == '') {
+            throw new \Exception("trying to define a route with an empty string");
+        }
+    }
+
     public function __destruct()
     {
         $prefix = static::$prefix;
-        $url = $prefix . $this->url;
+        $url = $this->url;
+
+        $this->validateUrl($url);
+
+
+        if (!str_starts_with($url, '/')) {
+            $url = "/$url";
+        }
+        $url = $prefix . $url;
+
         $url = $url . "=" . $this->method;
         if ($url != '/') {
             $url = rtrim($url, '/');
         }
+
+
         $build = [
             $url => [
                 // 'method' => ,
@@ -96,7 +114,6 @@ class GroupBuilder extends RouteBuilder
             call_user_func($this->callback);
             static::$prefix = '';
             static::$group_middleware = [];
-
             // echo RouteBuilder::$prefix;
         }
         ;
@@ -154,7 +171,6 @@ class Route
     public static function dispatch($request)
     {
 
-        // dd($app);
 
         $url = $request->path();
         $method = $request->method();
@@ -164,6 +180,15 @@ class Route
             $key = explode('=', $key);
             $routes_method = $key[1];
             $key = $key[0];
+
+            if (str_ends_with($key, '/')) {
+                $key = rtrim($key, '/');
+            }
+
+            if (!str_starts_with($key, '/')) {
+                $key = "/$key";
+            }
+
 
             $pattern = '#:(\w+)#';
 

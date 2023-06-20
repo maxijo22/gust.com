@@ -1,7 +1,5 @@
 <?php
 declare(strict_types=1);
-header('Access-Control-Allow-Origin:http://localhost:5173');
-header('Access-Control-Allow-Credentials:true');
 use Myframework\Http\Token;
 use Myframework\Http\App;
 use Myframework\Http\Request;
@@ -48,7 +46,7 @@ function get_token()
 }
 
 
-function view(string $view_name, array $data)
+function view(string $view_name, array $data = [])
 {
     if (!empty($data) && is_array($data)) {
         extract($data);
@@ -65,7 +63,6 @@ function view(string $view_name, array $data)
 
 }
 
- 
 
 $app = new App(dirname(__DIR__));
 $app->run();
